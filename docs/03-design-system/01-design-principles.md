@@ -28,6 +28,14 @@ the morning greeting with the workout already prepared, the *transformation* int
 earned celebration with tomorrow's teaser — then build the screens around them. See
 [signature moments](04-signature-moments.md).
 
+## Momentum is the identity
+
+FitMind's real differentiator isn't AI or workouts — it's **momentum**. Every screen answers one
+question: **"what's the easiest next action?"** Never *"here's your dashboard."* Always *Continue.*
+Reduce friction to near zero; the app's job is to get the user to the next rep, the next session,
+the next day — and to make stopping feel like the harder choice. See
+[emotional design](07-emotional-design.md).
+
 ## Design for sweat, not Dribbble
 
 The user is breathing heavily, one-handed, mid-set. Every screen must pass: **"can someone use this

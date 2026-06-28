@@ -49,15 +49,22 @@ being established before any code. Read the thinking:
   [user stories](docs/01-product/04-user-stories.md)
 - **Design:** [principles](docs/03-design-system/01-design-principles.md) ·
   [tokens](docs/03-design-system/02-design-tokens.md) ·
-  [screen inventory](docs/03-design-system/03-screen-inventory.md)
+  [screen inventory](docs/03-design-system/03-screen-inventory.md) ·
+  [signature moments](docs/03-design-system/04-signature-moments.md) ·
+  [workout player spec](docs/03-design-system/05-workout-player.md) ·
+  [haptic language](docs/03-design-system/06-haptic-language.md) ·
+  [emotional design](docs/03-design-system/07-emotional-design.md)
+- **Build (started — signature screen first):** [`app/`](app/) — the Workout Player's architecture
+  authored against the spec (custom-painted ring · state machine · haptics). Compile/profile/demo
+  on-device.
 
 ## Roadmap (lifecycle)
 
 | Phase | Focus | State |
 |---|---|---|
 | 1 · Discovery | Vision · PRD · Personas · Stories | ✅ done |
-| 2 · Design | Design system · wireframes · hi-fi UI · prototype | 🟡 in progress |
-| 3 · Build | Flutter app · adaptive engine · Health adapters · state mgmt | ⏳ |
+| 2 · Design | Design system · signature moments · player spec · emotional design | 🟡 in progress |
+| 3 · Build | **Workout Player first** (authored) → compile · profile 60fps · demo, then the rest | 🟡 started |
 | 4 · Hardening | Tests · accessibility · performance · CI/CD | ⏳ |
 | 5 · Ship | Demo video · case study · release | ⏳ |
 

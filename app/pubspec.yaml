@@ -1,0 +1,26 @@
+name: fitmind_ai
+description: The fitness app that adapts every day — not every month.
+publish_to: "none"
+version: 0.1.0+1
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+  flutter: ">=3.19.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  # Wired in during the build phase, per the design spec:
+  # rive: ^0.13.0          # exercise motion guidance (with static reduced-motion fallback)
+  # sensors_plus: ^5.0.0   # subtle gyroscope ring life after a set
+  # flutter_animate: ^4.5.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+# Platform folders (android/ ios/) are generated with `flutter create .` from this directory.
