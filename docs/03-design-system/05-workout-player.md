@@ -1,126 +1,155 @@
-# 05 — The Workout Player
+# 05 — The Workout Player (signature screen)
 
-**The signature screen.** If this is exceptional, average settings are forgiven; if this is average,
-nothing saves the app. It gets **40–50% of the design budget** and carries
-[Moments 2 and 3](04-signature-moments.md). Designed *for sweat* — usable at a heart rate of 150,
-one-handed, eyes-up.
+**The identity of FitMind.** If this is exceptional, the rest of the app almost designs itself. It
+gets **40–50% of the design budget** and carries [Moments 2 and 3](04-signature-moments.md). The
+goal: a 20-second clip that makes a reviewer stop and ask *"how did you build that?"*
 
-*Inspiration:* Nike Training Club (full-bleed motion coaching) · Apple Fitness (rings, glanceable
-metrics) · Whoop (premium dark, effort color). We take patterns, not pixels.
+*Inspiration:* Nike Training Club (full-bleed motion) · Apple Fitness (rings, glanceability) · Whoop
+(premium dark, effort color). Patterns, not pixels.
 
-## Two states that matter: WORK and REST
+## Principle for this screen: remove 40%
 
-### WORK — doing the set
-
-```
-┌──────────────────────────────┐
-│  ◖ 2/4 sets        ⏸  ✕      │   top: tiny progress + pause/quit (out of the way)
-│                              │
-│      [ motion guidance ]      │   exercise animation (Rive/Lottie/video) — the focus
-│        Goblet Squat           │   display: exercise name
-│                              │
-│         ⟳  12 reps            │   the number, huge, tabular (display-hero)
-│         @ 20 kg               │   label: load
-│                              │
-│   ░░░░░░░░░░░  ring grows     │   progress ring sweeps calm→AI (not ember yet)
-│                              │
-├──────────────────────────────┤
-│        ✓  Done set            │   thumb-zone primary — one giant target
-│     Harder · Failed (small)   │   secondary log options, smaller
-└──────────────────────────────┘
-```
-
-### REST — recovering between sets
+When someone is breathing hard, they don't read. The screen should look almost **empty** — the
+movement, one number, one action. Everything else is hidden until the moment it's needed.
 
 ```
-┌──────────────────────────────┐
-│  ◖ 2/4 sets               ✕  │
-│                              │
-│           0:42                │   rest countdown, display-hero, *breathing*
-│        breathe               │   the ring contracts/expands slowly (calm)
-│                              │
-│     Next: Goblet Squat        │   what's coming — read in a glance
-│         set 3 · 12 @ 22.5     │   note the +load (progression, explained on tap)
-│                              │
-├──────────────────────────────┤
-│        Skip rest  →           │   thumb-zone; auto-advances at 0:00 with a tick haptic
-│        +20s                   │   forgiving, one tap
-└──────────────────────────────┘
+WORK                                  REST
+┌──────────────────────────┐          ┌──────────────────────────┐
+│  ◖◗ 2/4            ⏸      │          │  ◖◗ 2/4                   │
+│                          │          │                          │
+│   [ motion guidance ]    │          │          0:42            │   ← celebrity number
+│                          │          │         breathe          │     (the ring breathes)
+│       PUSH-UPS           │          │                          │
+│                          │          │     Next · Push-ups       │   ← conversational,
+│          12              │  ← hero  │         set 3            │     no "AI"
+│         reps             │          │                          │
+│                          │          │                          │
+│  ╭────────────────────╮  │          │  ╭────────────────────╮  │
+│  │        DONE         │  │  ← one  │  │     Skip rest  →    │  │
+│  ╰────────────────────╯  │   giant  │  ╰────────────────────╯  │
+└──────────────────────────┘  action  └──────────────────────────┘
+       ring = the perimeter                +20s (tiny, forgiving)
 ```
 
-## Anatomy
+Hidden by default, revealed only on demand: weight (tap the number), heart-rate (appears **only** in
+the high zone, in ember), tips/form (swipe up), set list (the top counter). The default is calm.
 
-- **Exercise guidance (the focus):** looped motion that *teaches the movement* — not a static
-  image. Reduced-motion → a clean static diagram with the same labels.
-- **The number:** reps or countdown in `display-hero`, tabular — never jitters, readable at a glance.
-- **Progress ring:** one continuous sweep across the whole session; gradient `calm → AI` during
-  work, **ember only as a set closes**. The ring is the spatial sense of "how much is left."
-- **Primary action:** a single oversized thumb-zone target (*Done set* / *Skip rest*). Secondary
-  logs (*Harder*, *Failed*) are present but visually quiet.
+## The progress ring is the operating system
 
-## Motion (No Static Screen, here above all)
+One ring component, one visual language, rendered at different **scopes** — never decorative:
 
-| Element | Motion | Token |
-|---|---|---|
-| Ring (work) | grows continuously toward set completion | `ease-standard` |
-| Ring (rest) | slow breathe in/out (≈4s cycle) | custom |
-| Rep number | spring tick on each logged rep | `ease-spring` |
-| Set complete | ring snaps full → **ember flash** → collapses to rest | `dur-base` + haptic |
-| Exercise change | current card slides out, next rises | `dur-slow` |
-| Enter player | shared-element expand (Moment 2) | `dur-slow` |
-| Last set done | hands off to celebration (Moment 3) | `dur-celebrate` |
-
-## Haptics
-
-| Event | Pattern |
+| Scope | What the ring shows |
 |---|---|
-| Set complete | medium impact + ember flash |
-| Rest 3-2-1 | light ticks |
-| Rest ends / auto-advance | double tick |
-| New PR / streak | success notification |
-| Failed set logged | light warning (no shame) |
+| In-player (work) | progress through the current set / session, sweeping `calm → AI` |
+| Set complete | snaps full, **ember** flash, then collapses to rest |
+| Today screen | the day's session, a smaller instance of the same ring |
+| Streak / month (post-MVP) | week and month consistency — same DNA |
 
-## Logging — one tap, no friction
+It is built once (`CustomPainter`) and reused everywhere, so the app has a single spatial sense.
 
-- **Done set** (primary) advances and starts rest.
-- **Harder** / **Failed** are one-tap and feed adaptation (tomorrow eases or holds). Neutral,
-  non-judgmental copy — *Failed* is data, not blame.
-- **Undo window:** a 4s subtle bar after auto-advance to correct a mistap (sweat-proofing).
+## Invisible AI + microcopy that makes people smile
 
-## States (designed, not default)
+No "AI Generated Workout" anywhere. The coach is conversational and specific. Examples:
+- Entry (Today): *"Morning, Shubham. You slept well — let's push a little today. 32 minutes."*
+- Rest "next": *"Next · Push-ups, set 3"* (not "AI-selected exercise").
+- Partial finish: *"You had 4 minutes. You still trained. That's consistency. Tomorrow starts here."*
+- Full finish: *"First time you finished all 4 sets of these."* — names the real win.
 
-- **Paused:** dims, large Resume; timers hold; nothing lost.
-- **Last set:** the *Done* transitions directly into the celebration — no "Workout Complete" dialog.
-- **Reduced-motion:** static guidance + cross-fades; ring updates without sweep; haptics still fire.
-- **Offline / AI-less:** the deterministic session runs identically; a quiet badge, no degraded feel.
-- **Interrupted (call/lock):** resumes exactly where it left off.
+---
 
-## Design-for-sweat checklist (the gate for this screen)
+## Deliverable 1 · Interaction map
 
-- [ ] Primary action reachable one-handed, ≥ 64pt, in the thumb band.
-- [ ] The number is legible at arm's length, glanceable in < 1s.
-- [ ] No paragraph of text anywhere in WORK or REST.
-- [ ] Every state change has a haptic (eyes can be closed mid-rep).
-- [ ] Contrast passes WCAG AA on the dark canvas at a glance.
-- [ ] Voice-guidance-ready: each step has a spoken-label string (future TTS hook).
+| Trigger | Where | Result | Haptic |
+|---|---|---|---|
+| Tap **DONE** | WORK | log set, advance to REST | set-complete (sharp) |
+| Tap the number | WORK | reveal inline weight/rep adjuster | button (tiny) |
+| Swipe **up** on guidance | WORK | form tips sheet (peek) | — |
+| Swipe **down** | WORK / REST | pause (dim) | button |
+| Long-press DONE | WORK | "skip exercise" confirm | warning |
+| Tap **⏸** (top) | WORK | pause | button |
+| Tap **Skip rest →** | REST | end rest, start next set | rest-finished (soft) |
+| Tap **+20s** | REST | extend rest | button |
+| (auto) rest hits 0:00 | REST | auto-advance to next set | rest-finished (soft) |
+| (auto) last set DONE | WORK | hand off to celebration (Moment 3) | workout-complete (double) |
+| **Voice** "done" / "next" | any | log + advance | per event |
+| **Voice** "pause" / "repeat" | any | pause / replay guidance | button |
 
-## Accessibility
+Voice is a future feature, but every primary action already declares a **voice intent** and a
+spoken label, so the UI leaves room for it (no redesign later).
 
-Full screen-reader labels for exercise, set/rep, countdown, and actions; dynamic type without
-breaking the hero numerals; reduced-motion honored; targets ≥ 48pt; no color-only state (haptic +
-shape back every signal).
+## Deliverable 2 · Motion storyboard (0–15s, one continuous object)
 
-## Build notes (Flutter)
+Motion *is* navigation — nothing "pushes"; the same object transforms.
 
-- Ring: `CustomPainter` driven by an `AnimationController` (sweep + breathe); no heavy widget.
-- Guidance: Rive (preferred — small, crisp, interactive) or Lottie; static SVG/Image fallback for
-  reduced-motion.
-- Motion: `flutter_animate` / implicit animations; shared-element via `Hero` for Moment 2.
-- Haptics: `HapticFeedback` + platform channel for richer patterns where available.
-- Keep the WORK frame at a sustained **60fps** (120 where supported) — the ring and number must
-  never drop frames; profile this screen first.
+```
+0.00s  Today: session preview card is tapped
+0.00→0.42  card EXPANDS (shared element) into the player canvas; chrome + status fade;
+           the world darkens; ring draws 0 → set-start; one confident haptic as it seats
+0.42  guidance loop begins; "PUSH-UPS" + "12" spring in (celebrity number)
+0.5→… reps happen; each logged rep ticks the number with a spring + tiny haptic
+t      DONE tapped → ring snaps to full → EMBER flash + sharp click → card collapses to REST
++0.0   REST countdown appears and breathes (ring inhales/exhales, ~4s cycle)
+−3s    light ticks at 3·2·1
+0:00   soft pulse → next exercise rises as the previous descends (no page change)
+…      final set DONE → ring closes → morphs directly into the full-screen celebration
+       (ember burst, numbers count up, coach line types, tomorrow's teaser)
+```
+
+The marketing GIF is this unbroken transformation: **preview → player → celebration, one living
+object.** (The other signature interaction — the **Time Dial** on Today, where rotating a circular
+dial morphs the session live — is designed when we build Today; it reuses this ring.)
+
+## Deliverable 3 · Animation timing
+
+| Transition | Duration | Easing | Notes |
+|---|---|---|---|
+| Enter (shared-element expand) | 420ms | `ease-decel` | from Today's card |
+| Ring sweep (work) | continuous | `ease-standard` | tied to set progress, not a fixed loop |
+| Number spring (rep/enter) | 240ms | `ease-spring` | tabular, no layout shift |
+| Set complete | 240ms + ember flash 180ms | `ease-standard` | ring snap → collapse |
+| Rest breathe | ~4000ms cycle | sine | inhale/exhale, calming |
+| Exercise change | 420ms | `ease-standard` | rise/descend, not push |
+| Hand-off to celebration | 900ms | `ease-decel` | ring morphs, doesn't dismiss |
+| Reduced-motion | cross-fade 200ms | linear | no sweep/breathe; haptics remain |
+
+## Deliverable 4 · Haptics
+
+Per the [haptic language](06-haptic-language.md): button=tiny, rep=tick, rest-end=soft pulse,
+**set complete=sharp click**, workout=double pulse, PB/streak=celebration burst, failed=light
+warning. One event, one pattern — learnable without looking.
+
+## Deliverable 5 · Accessibility
+
+- **Targets:** primary (DONE / Skip) ≥ **64pt** in the thumb band; secondary ≥ 48pt.
+- **Glanceable:** the hero number readable at arm's length, comprehensible in < 1s; no paragraph in
+  WORK/REST.
+- **Screen reader:** focus order = exercise → set/rep → primary action; live-region announces set
+  complete, rest start/end, next exercise.
+- **Dynamic type:** body scales fully; hero numerals scale within a capped range so they never break
+  the layout.
+- **Reduced motion:** sweep/breathe/burst off; cross-fades + haptics carry the state.
+- **No color-only signals:** every signal is backed by shape **and** haptic (ember + flash + sharp
+  click together), so it survives color-blindness and haptics-off.
+- **Contrast:** WCAG AA on the dark canvas, validated for the number, labels, and ring.
+
+## Deliverable 6 · Flutter implementation notes
+
+- **State:** a `WorkoutSession` notifier (Riverpod/Bloc) is the single source of truth, a state
+  machine: `entering → work(setIndex) → rest(→next) → paused → completing`. The UI is a pure
+  function of state; transitions emit haptics through the `Haptics` service.
+- **Animation architecture:** one `AnimationController` for the ring (sweep), one for rest-breathe;
+  `Hero` for the enter expansion; `flutter_animate` for micro-interactions; a custom
+  `AnimatedSwitcher` for exercise change. Keep controllers in the notifier/owning widget, not
+  scattered.
+- **Ring:** a `RingPainter extends CustomPainter`, wrapped in a `RepaintBoundary`, repainting only on
+  its own ticker — the rest of the tree must not rebuild per frame.
+- **Guidance:** Rive controller (preferred — vector, interactive, tiny) with a static labelled SVG
+  fallback for reduced-motion.
+- **Haptics:** centralized `Haptics` service mapping events → the vocabulary (one place to tune).
+- **Performance:** sustained **60fps** (120 where supported); profile this screen *first*; isolate
+  repaints; precache the next exercise's guidance during rest so transitions never hitch.
 
 ## Definition of done
 
-A reviewer watching a 20-second clip of this screen should think *"I want to build apps like this."*
-If they don't, it isn't done.
+A 20-second screen recording makes a Flutter reviewer think **"I want to build apps like this"** and
+ask *how* it was built. If it doesn't, it isn't done — we iterate, we don't move on.
