@@ -3,6 +3,12 @@
 Stories for the MVP loop only, grouped by epic. Format: *As a … I want … so that …*, with
 acceptance criteria that are testable. Priority: **P0** = MVP-critical, **P1** = MVP-desirable.
 
+> **Scope note (delight-first MVP):** the MVP is the single magical daily loop (onboard → "how much
+> time today?" → generate → premium player → celebrate → tomorrow adapts). Per that cut, **US-A3
+> (injury flags)** and **US-E2 (progress view)** are **deferred** post-MVP, and health (Epic D) is
+> intentionally *light* — write-back + an optional recovery nudge, no dashboards. Every retained
+> story must help a user *complete today's workout*.
+
 ## Epic A — Onboarding & goal capture
 
 - **US-A1 (P0)** — As a new user, I want to set my goal, equipment, and usual available time in

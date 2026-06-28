@@ -2,7 +2,7 @@
 
 # FitMind AI
 
-*An adaptive AI fitness coach — your plan bends to your day, not the other way around.*
+*The fitness app that adapts every day — not every month.*
 
 ![status](https://img.shields.io/badge/status-phase%201%20·%20product%20discovery-2563EB?style=flat-square)
 ![platform](https://img.shields.io/badge/platform-iOS%20·%20Android-1E293B?style=flat-square)
@@ -23,9 +23,10 @@ that was never designed to adapt to them.
 
 ## The idea
 
-**Yesterday changes today.** FitMind AI generates each session from your goal *and* your recent
-performance, recovery, and available time — then guides it with App-Store-grade motion and
-haptics. Your health data doesn't just sit in a dashboard; it changes tomorrow's workout.
+**It adapts every day, not every month.** Most apps hand you a fixed plan; FitMind generates each
+session from your goal, your recent performance, and the time you actually have *today* — then
+guides it with App-Store-grade motion and haptics. *(Internally: recovery + performance + sleep +
+time-available → today's workout. Externally: it just fits your day.)*
 
 ```mermaid
 flowchart LR
@@ -40,23 +41,30 @@ flowchart LR
 
 ## Status
 
-Phase 1 — **Product Discovery**. No code yet; the product is being defined before it is built
-(the same discipline used on Engineering OS). Read the thinking:
+Phase 2 — **Design System** (mobile-first). The product is fully defined; the design language is
+being established before any code. Read the thinking:
 
-- [Product vision](docs/01-product/01-product-vision.md)
-- [PRD](docs/01-product/02-prd.md) — MVP scope, deliberately small
-- [Personas](docs/01-product/03-personas.md)
-- [User stories](docs/01-product/04-user-stories.md)
+- **Product:** [vision](docs/01-product/01-product-vision.md) · [PRD](docs/01-product/02-prd.md)
+  (delight-first MVP) · [personas](docs/01-product/03-personas.md) ·
+  [user stories](docs/01-product/04-user-stories.md)
+- **Design:** [principles](docs/03-design-system/01-design-principles.md) ·
+  [tokens](docs/03-design-system/02-design-tokens.md) ·
+  [screen inventory](docs/03-design-system/03-screen-inventory.md)
 
 ## Roadmap (lifecycle)
 
 | Phase | Focus | State |
 |---|---|---|
-| 1 · Discovery | Vision · PRD · Personas · Stories | 🟡 in progress |
-| 2 · Design | Design system · wireframes · hi-fi UI · prototype | ⏳ |
+| 1 · Discovery | Vision · PRD · Personas · Stories | ✅ done |
+| 2 · Design | Design system · wireframes · hi-fi UI · prototype | 🟡 in progress |
 | 3 · Build | Flutter app · adaptive engine · Health adapters · state mgmt | ⏳ |
 | 4 · Hardening | Tests · accessibility · performance · CI/CD | ⏳ |
 | 5 · Ship | Demo video · case study · release | ⏳ |
+
+## Quality bar
+
+> Every screen must look at home beside Apple Fitness, Nike Training Club, or Whoop — and earn
+> one "wow" moment. *No Generic Screen.*
 
 ## Engineering focus
 

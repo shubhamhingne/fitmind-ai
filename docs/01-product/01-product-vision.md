@@ -55,9 +55,12 @@ personalization + adaptation + adherence. Vanity metrics (downloads, signups) ar
 
 ## The one differentiator
 
-> **Yesterday changes today.** Every session is generated from your goal *and* your recent
-> performance, recovery, and available time — so the plan bends to your life instead of
-> breaking.
+> **The fitness app that adapts every day — not every month.**
+
+That's the *external* promise — understandable in five seconds. The *internal* mechanism is the
+engineering: every session is generated from recovery + performance + sleep + time-available, so
+the plan bends to your life instead of breaking. Users feel "it fits my day"; the architecture is
+an adaptive loop.
 
 ## Engineering thesis (why this app, for the portfolio)
 

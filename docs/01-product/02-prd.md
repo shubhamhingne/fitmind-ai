@@ -4,55 +4,63 @@
 
 ## Overview
 
-FitMind AI is a Flutter mobile app (iOS + Android) that generates and continuously adapts a
-personal training program from the user's goal, equipment, and available time — re-planning each
-session from recent performance and health-sensor data. The MVP proves one loop end-to-end:
-**onboard → generate today's session → train with premium guidance → sync health → adapt
-tomorrow.**
+FitMind AI is a Flutter mobile app (iOS + Android). The MVP is **not a fitness app — it is the
+single best daily-workout experience**, end to end:
 
-## Goals (MVP)
+```
+Open → beautiful onboarding → "How much time today?" → 28 min → AI generates (with motion)
+     → premium workout player → finish → celebration → AI summary → tomorrow adapts
+```
 
-1. A first-time user reaches a **personalized first session in under 2 minutes**.
-2. Each session is **generated for today's constraints** (time + equipment + recovery), not
-   pulled from a fixed plan.
-3. Health data (workouts, heart rate, sleep) **measurably changes** the next session.
-4. The training screen feels **App-Store premium** — motion-led, haptic, calm.
-5. Everything works **offline-first**; AI re-planning syncs when connectivity returns.
+Every screen must answer one question: **does this help someone complete today's workout?** If
+not, it is post-MVP. No settings, no profile editing, no dashboards, no graphs, no analytics, no
+social. One magical loop, executed at App-Store quality. If people love *that*, we build the rest.
 
-## Non-goals (MVP)
+## Goals (MVP) — delight-first
 
-- Social feed, friends, challenges, leaderboards.
-- Nutrition/meal planning (a later flagship concern, not this one).
-- Wearable-specific apps (watchOS / Wear OS) — phone first.
-- Human-coach marketplace, video calls.
-- Competitive/sport-specific periodization (see persona non-target).
+1. A first-timer reaches their **first session in under 2 minutes**, and it feels *made for them*.
+2. The daily prompt — **"how much time today?"** — visibly shapes the session (28 min ≠ 45 min).
+3. The **workout player is the centerpiece**: motion-led guidance, haptics, calm timing — the
+   screen a user remembers.
+4. Finishing a workout **feels like an achievement** (celebration + a short, warm AI summary).
+5. **Tomorrow adapts** from what you did today — the user feels the app learning.
 
-## Functional requirements
+## Non-goals (MVP) — deferred until evidence, not abandoned
 
-### FR-1 — Onboarding & goal capture
-- Capture goal (strength · consistency · fat-loss · mobility), experience, equipment, typical
-  available time, and injury flags — in ≤ 6 lightweight steps.
-- Request Health permission with a clear value explanation; the app must work if declined.
+- Progress dashboards, charts, analytics, history views.
+- Settings / profile editing screens.
+- Social: feed, friends, challenges, leaderboards.
+- Nutrition / meal planning.
+- Wearable apps (watchOS / Wear OS) — phone first.
+- Injury-management UI and equipment libraries beyond the onboarding minimum.
+- **Deep** health analytics. (A *light* health touch stays — see FR-4.)
 
-### FR-2 — Adaptive session generation
-- Generate **today's** session from: goal + equipment + time-available-today + recent
-  performance + recovery signal (sleep / resting HR).
-- Each session is **explainable**: the user can see *why* (e.g. "shorter today — poor sleep").
-- Deterministic fallback plan when AI is unavailable (offline / error) — never a blank screen.
+## Functional requirements (MVP loop)
 
-### FR-3 — Guided training session
-- Step-by-step execution with **motion-led exercise guidance**, set/rep/rest timing, and
-  **haptic** cues for transitions and rest end.
-- Log actual performance (reps, weight, RPE, skipped/failed) with one-tap interactions.
+### FR-1 — Onboarding that feels designed
+- ≤ 4 delightful steps: goal, rough experience, equipment-on-hand. No long forms.
+- Ends by generating the first session live (animated) — the first "wow," not a "you're all set."
 
-### FR-4 — Health integration
-- Read: workouts, heart rate, sleep, activity (HealthKit / Health Connect).
-- Write: completed FitMind sessions back as workouts.
-- All health access gated behind explicit consent; degrade gracefully if denied.
+### FR-2 — Daily time prompt + adaptive generation
+- Each day opens with **"How much time do you have today?"** — the session is generated to fit it.
+- Generated from: goal + equipment + time-today + what you did recently. **Explainable** in one
+  line ("shorter and sharper today").
+- **Deterministic fallback** when AI/offline — never a blank screen.
 
-### FR-5 — Adaptation & progress
-- After each session, update the user model; next session reflects it.
-- A progress view showing trend and a plain-language explanation of the current progression.
+### FR-3 — The workout player (the centerpiece)
+- Full-screen, motion-led guidance per exercise; set/rep/rest timing; **haptics** at set
+  completion and rest-end; live countdown and progress ring.
+- One-tap logging of what actually happened (done / harder / failed) — minimal friction.
+- Reduced-motion mode swaps animation for static, fully-labelled guidance.
+
+### FR-4 — Light health touch (skill on show, not a dashboard)
+- **Write** completed FitMind sessions back to HealthKit / Health Connect (one-way, consented).
+- **Optionally read** a recovery signal (sleep / resting HR) to nudge intensity — gated behind
+  consent, fully functional if declined. No health charts in the MVP.
+
+### FR-5 — Celebration + next-day adaptation
+- A genuine completion moment (celebration animation + haptic) and a short, warm **AI summary**.
+- The user model updates so **tomorrow's session reflects today** — felt, not graphed.
 
 ## Non-functional requirements
 
