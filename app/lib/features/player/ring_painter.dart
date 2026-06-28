@@ -72,7 +72,7 @@ class RingPainter extends CustomPainter {
           ..style = PaintingStyle.stroke
           ..strokeCap = StrokeCap.round
           ..strokeWidth = stroke
-          ..color = FitColors.ember.withValues(alpha: 0.45 * emberFlash)
+          ..color = FitColors.ember.withOpacity(0.45 * emberFlash)
           ..maskFilter = MaskFilter.blur(BlurStyle.normal, 10 * emberFlash),
       );
     }

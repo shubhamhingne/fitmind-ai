@@ -260,7 +260,7 @@ class _PausedView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: FitColors.bg.withValues(alpha: 0.7),
+      color: FitColors.bg.withOpacity(0.7),
       alignment: Alignment.center,
       child: FilledButton(
         onPressed: onResume,
