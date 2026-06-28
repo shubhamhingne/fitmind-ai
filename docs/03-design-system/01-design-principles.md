@@ -9,14 +9,31 @@ The design system is mobile-first, iOS + Android from day one, and held to the
 > For every screen, ask: **"Would this look out of place next to Apple Fitness, Nike Training
 > Club, or Whoop?"** If yes — redesign it. Functional is the floor; *App-Store premium* is the bar.
 
-## The two standing rules
+## The three standing rules
 
 1. **No Generic Screen.** Every screen has a deliberate hierarchy and at least one **"wow" moment**
-   — a small, *functional* interaction the user remembers (a personalized AI greeting, an animated
-   generation, a satisfying set-complete haptic, a smooth progress ring, an earned celebration). A
-   plain list, a naked form, or a bare spinner is *incomplete*, the same way an untested feature is.
-2. **Does this help complete today's workout?** If a screen, control, or setting doesn't, it's
+   — a small, *functional* interaction the user remembers. A plain list, a naked form, or a bare
+   spinner is *incomplete*, the same way an untested feature is.
+2. **No Static Screen.** Every important screen feels **alive** — motion reinforces state, never
+   decorates. A ring *grows*, a rest timer *breathes*, a time wheel *morphs* the session, a card
+   *expands* into the player, completion *erupts*. A stopwatch is a defect where a growing ring will
+   do. (Motion that conveys nothing is still removed — alive ≠ busy.)
+3. **Does this help complete today's workout?** If a screen, control, or setting doesn't, it's
    post-MVP. The MVP is one magical loop, not a feature surface.
+
+## Design moments, not screens
+
+People don't remember screens; they remember **moments**. We design the memorable moments first —
+the morning greeting with the workout already prepared, the *transformation* into training, the
+earned celebration with tomorrow's teaser — then build the screens around them. See
+[signature moments](04-signature-moments.md).
+
+## Design for sweat, not Dribbble
+
+The user is breathing heavily, one-handed, mid-set. Every screen must pass: **"can someone use this
+while out of breath?"** That means large tap targets, high contrast, minimal reading, glanceable
+progress, strong haptic cues, voice-guidance-ready, one-handed reach. Beautiful *and* usable under
+load — beauty that fails at a heart rate of 150 is decoration.
 
 ## Principles
 

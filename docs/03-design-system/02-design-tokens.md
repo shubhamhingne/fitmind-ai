@@ -28,8 +28,16 @@ AI; the single warm **ember** carries effort, streaks, and celebration — used 
 | `danger` | `#EF4444` | Failure / destructive only |
 | `ring-grad` | `#2563EB → #06B6D4 → #FF6A3D` | Progress ring sweep (calm → AI → effort) |
 
-> **Discipline (one element, one job):** cool blues for structure/AI/calm; `ember` only for
-> effort and reward. Never two accents competing in one view.
+> **Ember is earned, never idle.** It is a *reward* color, not a brand color. The psychology:
+> blue = trust, cyan = intelligence, **ember = effort / achievement** — so it must only appear at
+> moments the user earned.
+>
+> - **Never** for: navigation, buttons, cards, backgrounds, body text, icons-at-rest.
+> - **Only** for: set completion, heart-rate high zone, intensity/effort, calories, streaks,
+>   achievement badges, celebration/particles. The structure stays cool; warmth marks the win.
+>
+> **One element, one job:** cool blues carry structure/AI/calm; never two accents competing in one
+> view. Restraint is what makes the ember moments feel special.
 
 ## Typography
 

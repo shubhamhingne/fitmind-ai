@@ -14,6 +14,18 @@ wow moment is incomplete (the *No Generic Screen* rule).
 1 Onboard → 2 Today (time prompt) → 3 Session preview → 4 Workout player → 5 Celebration → (back to 2)
 ```
 
+## Design order (not parallel)
+
+Designed in order of leverage, so the surrounding screens inherit the player's language:
+
+1. ⭐ **[Workout player](05-workout-player.md)** — the signature screen (40–50% of effort) ← *spec'd*
+2. Today (the entry point)
+3. Session preview
+4. Celebration
+5. Onboarding
+
+The memorable [signature moments](04-signature-moments.md) are designed first; screens serve them.
+
 ## 1 · Onboarding — "made for me in 60 seconds"
 
 - **Purpose:** goal · rough experience · equipment, in ≤ 4 steps. No long forms.
